@@ -7,30 +7,44 @@ Created on Wed Nov 27 22:09:28 2019
 """
 
 import os
-import shutil
+from distutils import dir_util
 
 # directory paths
-path_1 = r""
-path_2 = r""
+path_1 = r"C:\Users\1615066\Documents\Alex Liang"
+path_2 = r"\\Cnwpipfil18\CA_SHARE\MIS Team\Alex Liang"
 
 # confirmation
-confirmation = input("Do you want to synchronize " + path_1 + " & " + path_2 + ": (Y/N)")
+print("Do you want to synchronize")
+print("Path 1: " + path_1)
+print("Path 2: " + path_2)
+confirmation = input("(Y/N): ")
 
 if confirmation != "Y":
+	print("Quiting...")
 	quit()
+
+print("Synchronizing...")
 
 # compare modified datetimes of folders
 modified_time_1 = os.path.getmtime(path_1)
 modified_time_2 = os.path.getmtime(path_2)
 
+list_1 = os.listdir(path_1)
+list_2 = os.listdir(path_2)
+
 src_path = ""
 dest_path = ""
 
-if modified_time_1 < modified_time_2:
-	src_path, dest_path = path_1,path_2
-elif modified_time_2 < modified_time_1:
-	src_path, dest_path = path_2,path_1
+if len(list_1) and len(list_1):
+	if modified_time_1 < modified_time_2:
+		src_path, dest_path = path_2, path_1
+	elif modified_time_2 < modified_time_1:
+		src_path, dest_path = path_1, path_2
+elif len(list_1):
+	src_path, dest_path = path_1, path_2
+elif len(list_2):
+	src_path, dest_path = path_2, path_1
 
 # overwrite old folder with new one
 if src_path != "":
-	shutil.copytree(src_path, dest_path)
+	dir_util.copy_tree(src_path, dest_path)
