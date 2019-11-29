@@ -10,8 +10,8 @@ import os
 from distutils import dir_util
 
 # directory paths
-path_1 = r"C:\Users\1615066\Documents\Alex Liang"
-path_2 = r"\\Cnwpipfil18\CA_SHARE\MIS Team\Alex Liang"
+path_1 = r""
+path_2 = r""
 
 # confirmation
 print("Do you want to synchronize")
