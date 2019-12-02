@@ -17,7 +17,7 @@ os.system(r"net use Q: \\server_path\folder_name")
 import subprocess
 
 # Disconnect anything on M
-subprocess.call(r'net use m: /del', shell=True)
+subprocess.call(r"net use m: /del", shell=True)
 
 # Connect to shared drive, use drive letter M
-subprocess.call(r'net use m: \\shared\folder /user:user123 password', shell=True)
+subprocess.call(r"net use m: \\shared\folder /user:user123 password", shell=True)
