@@ -41,11 +41,11 @@ Modification: Continuous Variable Discretization
 
 	proc format;
 		value fmt_&opt_label.
-			low-<&opt_min.="(-Inf,&opt_min.)"
+			low-<&opt_min.="00.(-Inf,&opt_min.)"
 			%do grp_cnt=1 %to &opt_groups.;
-				%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.)-<%eval(&opt_min.+&grp_cnt.*&opt_interval.)="[%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.),%eval(&opt_min.+&grp_cnt.*&opt_interval.))"
+				%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.)-<%eval(&opt_min.+&grp_cnt.*&opt_interval.)="%sysfunc(putn(&grp_cnt.,z2.)).[%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.),%eval(&opt_min.+&grp_cnt.*&opt_interval.))"
 			%end;
-			%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.)-high="[%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.),+Inf)"
+			%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.)-high="%sysfunc(putn(&grp_cnt.,z2.)).[%eval(&opt_min.+(&grp_cnt.-1)*&opt_interval.),+Inf)"
 		;
 	quit;
 %end;
